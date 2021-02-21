@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Login Success</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body id="login_success">
+    <h2>Login Success</h2>
+    {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <p id="welcome">Welcome {{user.first_name}} Successfully registered (or logged in)</p>
+    <a href="/logout">Log Out</a>
+    <br>
+
+    <div>
+        <h1>My Stations</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Station Name</th>
+                    <th>Location</th>
+                    <th>Division</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for history in myhistory %}
+                    {% for station in all_stations %}
+                        {% if station.id == history.history_stationed_id %}
+                            <tr>
+                                <td>{{station.station_name}}</td>
+                                <td>{{station.location}}</td>
+                                <td>{{history.division}}</td>
+                                <td>{{history.from_year}}</td>
+                                <td>{{history.to_year}}</td>
+                                <td><a href="/history_remove/{{history.id}}">Remove</a>  | <a href="/history_edit/{{history.id}}">Edit</a>  | <a href="/history_match/{{history.id}}/{{station.id}}">Match</a></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/stations/new">View Station Page</a>
+    </div>
+</body>
+</html>

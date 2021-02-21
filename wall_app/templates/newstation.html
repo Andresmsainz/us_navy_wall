@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Assign Station</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body id="station_dashboard">
+    <h2>Station Dashborad</h2>
+    <p id="welcome">Welcome {{user.first_name}} Successfully registered (or logged in)</p>
+    <a href="/logout">Log Out</a>
+    {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div>
+        <h3>All Stations</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Station Name</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for station in all_stations %}
+                <tr>
+                    <form action="/new_assign_station" method="post">
+                        {% csrf_token %}
+                        <td>{{station.station_name}}</td>
+                        <td>{{station.location}}</td>
+                        <td><a href="/new_assign_station/{{station.id}}" role="button">Assign!</a></td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+ <!--   <div>
+        <h3>New Station</h3>
+
+        <form action="/create_station" method="POST">
+            {% csrf_token %}
+            <label>Station Name</label>
+            <input name="stationname" type="text">
+            <br>
+            <label>Location</label>
+            <input name="location" type="text">
+            <br>
+            <button type="submit">Create</button>
+        </form>
+
+    </div>
+    -->
+</body>
+</html>

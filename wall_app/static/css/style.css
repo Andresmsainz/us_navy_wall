@@ -1,0 +1,98 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    outline: 1px dashed red;
+    font-family: sans-serif;
+    }
+
+#login {
+        background-color: palegoldenrod;
+    }
+    #login h2 {
+        margin-left: 730px;
+    }
+    #register {
+        vertical-align: top;
+        width: 400px;
+        display: inline-block;
+        margin-left: 300px;
+    }
+    #signin {
+        vertical-align: top;
+        width: 400px;
+        display: inline-block;
+        margin-left: 300px;
+    }
+
+    #login div label{
+        width: 100px;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+
+    #login div input{
+        width: 200px;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+
+    #messages {
+        margin-left: 0px;
+        color: red;
+    }
+
+#login_success {
+        background-color: palegoldenrod;    
+    }
+        #login_success p {
+            display: inline-block;
+            margin-right: 1000px;
+        }
+        #login_success div {
+            display: inline-block;
+            margin-right: 20px;
+            margin-left: 500px;
+            vertical-align: top;
+        }
+
+#match {
+        background-color: palegoldenrod;    
+    }
+    #match p {
+        display: inline-block;
+        margin-right: 1000px;
+    }
+    #match div {
+        display: inline-block;
+        margin-right: 20px;
+        margin-left: 500px;
+        vertical-align: top;
+    }
+
+#station_dashboard {
+    background-color: palegoldenrod;    
+    }
+    #station_dashboard p {
+        display: inline-block;
+        margin-right: 1000px;
+    }
+    #station_dashboard div {
+        display: inline-block;
+        margin-right: 20px;
+        margin-left: 500px;
+        vertical-align: top;
+    }
+
+#assign_station {
+    background-color: palegoldenrod;    
+    }
+    #assign_station p {
+        display: inline-block;
+        margin-right: 1000px;
+    }
+    #assign_station div {
+        display: inline-block;
+        margin-right: 20px;
+        margin-left: 500px;
+        vertical-align: top;
+    }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>History Match</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body id="match">
+    <h2>Station History Match</h2>
+    <p id="welcome">Welcome {{user.first_name}} Successfully registered (or logged in)</p>
+    <a href="/logout">Log Out</a>
+
+    <div>
+        <h2>My Current Station</h2>
+        {% csrf_token %}
+        {% for history in myhistory %}
+            {% for station in all_stations %}
+                {% if station.id == history.history_stationed_id %}
+                    <label>Station Name</label>
+                    <input name="stationname" type="text" value="{{station.station_name}}">
+                    <br>
+                    <label>Location</label>
+                    <input name="location" type="text" value="{{station.location}}">
+                    <br>
+                    <label>From Year</label>
+                    <input name="from_year" type="text" value="{{history.from_year}}">
+                    <br>
+                    <label>To Year</label>
+                    <input name="to_year" type="text" value="{{history.to_year}}">
+                    <br>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <br>
+
+    <div>
+        <h2>My Matches</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>Division</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for history in myhistory %}
+                {% for ahistory in allhistory %}
+                    {% if history.from_year <= ahistory.to_year %}
+                        {% if history.to_year >= ahistory.from_year %}
+                            {% for loop_user in all_users %}
+                                {% if ahistory.user_stationed_id == loop_user.id %}
+                                    <tr>
+                                        <td>{{loop_user.last_name}}</td>
+                                        <td>{{ahistory.division}}</td>
+                                        <td>{{ahistory.from_year}}</td>
+                                        <td>{{ahistory.to_year}}</td>
+                                        <td><a href="/contact/{{history.id}}">Contact</a></td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/stations/new">View Station Page</a>
+    </div>
+</body>
+</html>
